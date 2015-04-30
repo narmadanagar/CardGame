@@ -65,22 +65,6 @@ public class CardPile
 	public void clear()
 	{
 		pile.clear();
-	}
-
-   public void shuffle()
-   {
-      int randNum;
-      Card temp;
-      Random r = new Random();
-      for (int i = 0; i < size(); i++)
-      {
-         randNum = r.nextInt(size());
-         temp = get(i);
-         set(i,get(randNum));
-         set(randNum,temp);
-      }     
-   }
-
-      
+	}      
    
 }

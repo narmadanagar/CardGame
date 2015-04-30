@@ -7,6 +7,7 @@ public class WarGame
    public static void main(String[] args) 
 	{
       Scanner keyboard = new Scanner(System.in);
+      
       //new WarGameGUI();
       Deck3 deck1 = new Deck3();
       CardPile player1 = new CardPile();
@@ -14,8 +15,6 @@ public class WarGame
       
       //shuffles the cards
    	deck1.shuffle();
-      //Checking the size of the Deck
-   	System.out.println("size: " + deck1.size());
    
    	//Takes the deckOfCards and splits them up into 2 piles for Player1 and Player2
    	for(int i = 0; i < 26; i++)
@@ -23,24 +22,33 @@ public class WarGame
    		player1.add(deck1.getTopCard());
    		player2.add(deck1.getTopCard());
    	}
-               player1.shuffle();
 
-        System.out.println(player1+"\n"+player2);
-      
-         while (player1.size() != 0 && player2.size() != 0)
+      // prompt for next cards to show up
+      System.out.println("Enter 'Y' for next Card");      
+      String input = keyboard.nextLine();
+         
+         // validate the input
+         while (input.equals("Y") && player1.size() != 0 && player2.size() != 0)
          {  
             compareTop(player1,player2);
+            System.out.println("Enter 'Y' for next Card");      
+            input = keyboard.nextLine();
          }
         
-        System.out.println(player1.size()+" "+player2.size());
+        System.out.println(player1.size()+" "+player2.size()); // Get the size of the player's deck after 
         
+         // Compare the sizes of the player's decks
          if (player1.size() > player2.size())
          {
             System.out.println("Player1 won!");
          }
-         else
+         else if (player1.size() < player2.size())
          {
             System.out.println("Player2 won!");
+         }
+         else
+         {
+            System.out.println("Nobody won!");
          }
      
       
@@ -49,6 +57,8 @@ public class WarGame
      
       /*
          compareTop method compares the ranks of the topmost card in the deck
+         @param player1 the instance of the CardPile class
+         @param player2 the instance of the CardPile class
       */
       public static void compareTop(CardPile player1,CardPile player2)
       {
@@ -104,6 +114,11 @@ public class WarGame
      
       /*
          war method compares the cards in case a war occurs
+         @param player1 CardPile instance
+         @param player2 CardPile instance
+         @param tieCards which collects the cards to be removed and then given to the winning player
+         @param the Card instance which shows the top card of player1
+         @param the Card instance which shows the top card of player2         
       */
       public static void war(CardPile player1,CardPile player2,ArrayList<Card> tieCards,Card p1,Card p2)
       {        
@@ -113,7 +128,7 @@ public class WarGame
           tieCards.add(p1);
           tieCards.add(p2);
                   
-          tieCards.add(player1.getTopCard());
+          tieCards.add(player1.getTopCard()); 
           tieCards.add(player2.getTopCard());
          
          p1 = player1.getTopCard();
@@ -123,6 +138,7 @@ public class WarGame
          // in case a war occurs again         
          if (p1.getRank() == p2.getRank())
           {
+               System.out.println("War in War!");
                war(player1,player2,tieCards,p1,p2);
           }
          
