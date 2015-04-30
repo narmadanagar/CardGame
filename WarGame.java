@@ -1,3 +1,9 @@
+/*
+   Nidhi Singh
+   CS 110
+   Main War class
+*/
+
 // import 
 import java.util.Scanner;
 import java.util.ArrayList;
