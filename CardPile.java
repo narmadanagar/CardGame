@@ -4,7 +4,7 @@ CS 110 (Assignment #10)
 CardPile Class - holds a "pile" of Cards and has methods to access them
 */
 import java.util.ArrayList;
-
+import java.util.Random;
 public class CardPile
 {
 	//uses an ArrayList of Cards to actually store cards
@@ -66,6 +66,20 @@ public class CardPile
 	{
 		pile.clear();
 	}
+
+   public void shuffle()
+   {
+      int randNum;
+      Card temp;
+      Random r = new Random();
+      for (int i = 0; i < size(); i++)
+      {
+         randNum = r.nextInt(size());
+         temp = get(i);
+         set(i,get(randNum));
+         set(randNum,temp);
+      }     
+   }
 
       
    

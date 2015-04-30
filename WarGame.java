@@ -23,6 +23,8 @@ public class WarGame
    		player1.add(deck1.getTopCard());
    		player2.add(deck1.getTopCard());
    	}
+               player1.shuffle();
+
         System.out.println(player1+"\n"+player2);
       
          while (player1.size() != 0 && player2.size() != 0)
@@ -72,13 +74,11 @@ public class WarGame
         
          else
          { 
-            System.out.println("WAR");
 
             // execute only of there are enough cards
             if (player1.size() >= 3 && player2.size() >=3)         
             {
                ArrayList<Card> tieCards = new ArrayList<Card>();
-               System.out.println("ANOTHER WAR");
                war(player1,player2,tieCards,p1,p2);
             }
             else // if any of the player ran out of cards
